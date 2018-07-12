@@ -21,7 +21,7 @@ export class RobotPartsFormComponent implements OnInit {
   onSubmit() {
     console.log('Inside submitForm')
     if (this.robotPart.id == undefined) {
-      this._robotService.createRobotPart(this.robotPart).subscribe(robotPart)=> {
+      this._robotService.createRobotPart(this.robotPart).subscribe(this.robotPart)=> {
         console.log(robotPart);
         this._router.navigate(['/']);
       }, (error) => {
