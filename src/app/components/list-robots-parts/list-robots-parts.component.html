@@ -1,3 +1,26 @@
-<p>
-  list-robots-parts works!
-</p>
+<br>
+<div class="container">
+  <h1>Welcom to Kahoot Robot Parts Catalogue</h1>
+  <br>
+  <br>
+  <table class="table table-striped">
+    <thead>
+      <th>ID</th>
+      <th>NAME</th>
+      <th>Serial Number</th>
+      <th>Manufacturer</th>
+      <th>Weight</th>
+      <th>Compatible Parts</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let part of robotParts">
+        <td>{{part.id}}</td>
+        <td>{{part.name}}</td>
+        <td>{{part.serialNumber}}</td>
+        <td>{{part.manufacturer}}</td>
+        <td>{{part.weight}}</td>
+        <td>NA</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

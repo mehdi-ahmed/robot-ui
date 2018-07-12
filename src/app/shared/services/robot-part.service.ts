@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpClientModule} from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { RobotPart } from '../model/robot-part.model';
 
@@ -13,9 +13,7 @@ const httpOptions = {
 
 const ROBOT_API_URL = environment.baseURL;
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class RobotPartService {
 
   constructor(private http: HttpClient) { }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RobotPart } from '../../shared/model/robot-part.model';
+import { RobotPartService } from '../../shared/services/robot-part.service';
 
 @Component({
   selector: 'app-list-robots-parts',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListRobotsPartsComponent implements OnInit {
 
-  constructor() { }
+  private robotParts: RobotPart[];
+
+  constructor(private _robotService: RobotPartService) { }
 
   ngOnInit() {
-  }
+    this._robotService.getAllRobotParts().subscribe((robotParts) => {
+      console.log(robotParts);
+      this.robotParts = robotParts;
+    }, (error) => {
+      console.log(error);
+    })
 
+  }
 }
