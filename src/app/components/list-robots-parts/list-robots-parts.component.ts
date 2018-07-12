@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './list-robots-parts.component.html',
   styleUrls: ['./list-robots-parts.component.css']
 })
+
 export class ListRobotsPartsComponent implements OnInit {
 
   private robotParts: RobotPart[];
@@ -17,11 +18,15 @@ export class ListRobotsPartsComponent implements OnInit {
    this.refreshOrLoad(); 
   }
 
+  getter() {
+    return this.robotParts;
+  }
 
   public refreshOrLoad() {
     this._robotService.getAllRobotParts().subscribe((robotParts) => {
       console.log(robotParts);
       this.robotParts = robotParts;
+      this._robotService.setterList(this.robotParts);
     }, ((error) => {
       console.log(error);
     }));
@@ -31,6 +36,7 @@ export class ListRobotsPartsComponent implements OnInit {
     robotPart = new RobotPart();
     this._robotService.setter(robotPart);
     this._router.navigate(['/doStuff']);
+    this.refreshOrLoad();
   }
 
   public update(robotPart) {
@@ -44,4 +50,5 @@ export class ListRobotsPartsComponent implements OnInit {
     this.robotParts.splice(this.robotParts.indexOf(robotPart), 1);
     this._router.navigate(['/']);
   }
+    
 }

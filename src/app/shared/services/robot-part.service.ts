@@ -17,7 +17,8 @@ const ROBOT_API_URL = environment.baseURL;
 export class RobotPartService {
 
   private robotPart: RobotPart = new RobotPart();
-
+  private robotParts: RobotPart[];
+  
   constructor(private http: HttpClient) {
   }
 
@@ -68,6 +69,15 @@ export class RobotPartService {
 
   setter(robotPart: RobotPart) {
     this.robotPart = robotPart
+  }
+
+  setterList(list: RobotPart[]) {
+    this.robotParts = list;
+  }
+
+  getterList() {
+    return this.robotParts;
+
   }
 
   getter() {
