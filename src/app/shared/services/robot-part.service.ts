@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpClientModule} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { RobotPart } from '../model/robot-part.model';
 
@@ -15,6 +15,8 @@ const ROBOT_API_URL = environment.baseURL;
 
 @Injectable()
 export class RobotPartService {
+
+  private robotPart: RobotPart = new RobotPart();
 
   constructor(private http: HttpClient) { }
 
@@ -60,7 +62,7 @@ export class RobotPartService {
 
   public deleteRobotPart(robotPartId: number): Observable<null> {
     return this.http
-      .delete(ROBOT_API_URL + '/todos/' + robotPartId).pipe(
+      .delete(ROBOT_API_URL + '/delete/' + robotPartId).pipe(
         map(response => null),
         catchError(this.handleError)
       );
@@ -70,5 +72,13 @@ export class RobotPartService {
   private handleError(error: Response | any) {
     console.error('ApiService::handleError', error);
     return Observable.throw(error);
+  }
+
+  setter(robotPart: RobotPart) {
+    this.robotPart = robotPart
+  }
+
+  getter() {
+    return this.robotPart;
   }
 }

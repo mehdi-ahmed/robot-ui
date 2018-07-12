@@ -1,6 +1,6 @@
 <br>
 <div class="container">
-  <h1>Welcom to Kahoot Robot Parts Catalogue</h1>
+  <h1>Welcom to Kahoot's RobotParts Manager Catalogue</h1>
   <br>
   <br>
   <table class="table table-striped">
@@ -11,6 +11,7 @@
       <th>Manufacturer</th>
       <th>Weight</th>
       <th>Compatible Parts</th>
+      <th>Do Some Stuff</th>
     </thead>
     <tbody>
       <tr *ngFor="let part of robotParts">
@@ -20,7 +21,15 @@
         <td>{{part.manufacturer}}</td>
         <td>{{part.weight}}</td>
         <td>NA</td>
+        <td>
+          <button id="btnRemove" class="btn btn-danger" (click)="delete(part);">Remove</button>&nbsp;
+          <button class="btn btn-primary" (click)="update(part);">Edit</button>
+        </td>
       </tr>
     </tbody>
   </table>
+
+  <td>
+    <button class="btn btn-primary" (click)="add(part);">Add</button>
+  </td>
 </div>

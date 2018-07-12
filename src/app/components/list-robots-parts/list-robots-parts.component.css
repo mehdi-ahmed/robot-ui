@@ -1,0 +1,5 @@
+.btnRemove{
+	/* WE ADD A 5px MARGIN AROUND THE ELEMENTS*/
+    margin: 5px;
+    text-decoration-color: yellow;
+}
