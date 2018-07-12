@@ -11,39 +11,37 @@ import { Router } from '@angular/router';
 export class ListRobotsPartsComponent implements OnInit {
 
   private robotParts: RobotPart[];
-  constructor(private _robotService: RobotPartService:, private _router: Router) { }
+  constructor(private _robotService: RobotPartService, private _router: Router) { }
 
   ngOnInit() {
-    this.loadOrRefreshTable();
+   this.refreshOrLoad(); 
   }
 
 
-  public loadOrRefreshTable() {
+  public refreshOrLoad() {
     this._robotService.getAllRobotParts().subscribe((robotParts) => {
       console.log(robotParts);
       this.robotParts = robotParts;
-    }, (error) => {
+    }, ((error) => {
       console.log(error);
-    });
+    }));
   }
 
-  add(robotPart) {
-    let robotPart = new RobotPart();
+ public add(robotPart) {
+    robotPart = new RobotPart();
     this._robotService.setter(robotPart);
     this._router.navigate(['/doStuff']);
   }
 
-  update(robotPart) {
+  public update(robotPart) {
     this._robotService.setter(robotPart);
     this._router.navigate(['/doStuff']);
+    this.refreshOrLoad(); 
   }
 
-  delete(robotPart) {
-    this._robotService.deleteRobotPart(robotPart.id).subscribe((data => {
-      this.robotParts.splice(this.robotParts.indexOf(robotPart), 1);
-      this.loadOrRefreshTable();
-    }, (error) => {
-      console.log('error', error;)
-    });
-}
+  public delete(robotPart) {
+    this._robotService.deleteRobotPart(robotPart.id).subscribe();
+    this.robotParts.splice(this.robotParts.indexOf(robotPart), 1);
+    this._router.navigate(['/']);
+  }
 }

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { RobotPart } from '../model/robot-part.model';
 
-import { map, scan, catchError, filter } from 'rxjs/operators';
-import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 
 const httpOptions = {
@@ -18,7 +18,8 @@ export class RobotPartService {
 
   private robotPart: RobotPart = new RobotPart();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   public getAllRobotParts(): Observable<RobotPart[]> {
     console.log(`Fetching all RobotParts from ${ROBOT_API_URL}...`);
@@ -60,16 +61,7 @@ export class RobotPartService {
   }
 
 
-  public deleteRobotPart(robotPartId: number): Observable<null> {
-    return this.http
-      .delete(ROBOT_API_URL + '/delete/' + robotPartId).pipe(
-        map(response => null),
-        catchError(this.handleError)
-      );
-  }
-
-
-  private handleError(error: Response | any) {
+  handleError(error: Response | any) {
     console.error('ApiService::handleError', error);
     return Observable.throw(error);
   }
@@ -81,4 +73,14 @@ export class RobotPartService {
   getter() {
     return this.robotPart;
   }
+
+
+  public deleteRobotPart(robotPartId: number): Observable<null> {
+    return this.http
+      .delete(ROBOT_API_URL + '/delete/' + robotPartId).pipe(
+        map(response => null)
+        , catchError(this.handleError)
+      );
+  }
 }
+
