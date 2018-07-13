@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { ListRobotsPartsComponent } from './components/list-robots-parts/list-robots-parts.component';
 import { RobotPartsFormComponent } from './components/robot-parts-form/robot-parts-form.component';
 import { Routes, RouterModule} from '@angular/router';
+//import { SharedModule } from './shared/module/shared-module.component';
 
 const appRoutes: Routes = [
   { path: '', component: ListRobotsPartsComponent },
@@ -18,17 +19,18 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     ListRobotsPartsComponent,
-    RobotPartsFormComponent
+    RobotPartsFormComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     RouterModule,
+    //SharedModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [RobotPartService, HttpClientModule],
+  providers: [RobotPartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

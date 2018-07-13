@@ -3,6 +3,7 @@
   <h1>Welcom to Kahoot's RobotParts Manager Catalogue</h1>
   <br>
   <br>
+  <button class="btn btn-primary" (click)="refresh();"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
   <table class="table table-striped">
     <thead>
       <th>ID</th>
@@ -20,8 +21,15 @@
         <td>{{part.serialNumber}}</td>
         <td>{{part.manufacturer}}</td>
         <td>{{part.weight}}</td>
-        <td>NA</td>
-        <td>
+        <TD ALIGN="center">
+          <select>        
+               <option value="d1">dummyPart1</option>
+               <option value="d2">dummyPart2</option>
+               <option value="d3">dummyPart3</option>
+               <option value="d4">dummyPart4</option>
+          </select>
+       </TD>        
+       <td>
           <button id="btnRemove" class="btn btn-danger" (click)="delete(part);">Remove</button>&nbsp;
           <button class="btn btn-primary" (click)="update(part);">Edit</button>
         </td>
