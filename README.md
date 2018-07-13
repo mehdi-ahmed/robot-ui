@@ -8,5 +8,6 @@ I have used Angular CLI to generate the squeleton.
   Make sure npm is installed.
   
   Run : 
+  npm install and then : 
   
   ng serve --open
